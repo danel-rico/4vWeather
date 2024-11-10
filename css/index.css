@@ -1,3 +1,27 @@
+.container, .centered-container {
+  background-color: white;
+}
 
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  max-width: 500px;
+}
+
+.card {
+  width: 18rem;
+}
+
+.boton {
+  background-color: gray;
+}
+
+.fondo {
+  background-color: rgb(177, 175, 175);
+}
 
 /*# sourceMappingURL=index.css.map */

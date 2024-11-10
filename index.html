@@ -2,29 +2,159 @@
 <html>
 
 <head>
+    <title>4V Weather</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Información de la temperatura</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    
     
 </head>
 <body>
-    <h1>Busca la información de una ciudad</h1>
-    
-    <label for="ciudad">Nombre de la ciudad:</label>
-    <input type="text" id="ciudad" name="ciudad" placeholder="Introduce una ciudad" required>
-    <button type="submit" id="buscar">Enviar</button>
-    <br><br>
-    <button type="submit" id="prediccion">Perdiccion para dentro de 4 dias  </button>
-    <br><br>
-    <button type="submit" id="botonTuCiudad">Tiempo actual en tu ciudad</button>
+    <div class="container centered-container">
+        <div class="content">
+            <h1 class="text-center">Busca la información de una ciudad</h1>
+            <div class="input-group mb-3">
+                <input type="text" id="ciudad" name="ciudad" placeholder="Introduce una ciudad" required>
+                <div class="input-group-append">
+                    <button class="boton" type="submit" id="buscarCiudades">Enviar</button>
 
-    <div id="infoCiudad"></div>
-    <div id="map"></div>
+                </div>
+            </div>
+            <label for="ciudad">INTRODUCE EL NOMBRE DE LA CIUDAD:</label>
+        </div>
+    </div><br>
+    <div>
+        <select class="form-select" id="infoCiudad">
+            <option selected>Elige cualquiera de las opciones</option>
+        </select>
+    </div>
+    <button class="boton" id="buscarTiempo">Buscar</button>
+    <div class="fondo" id="encotradosTiempo">
+        <div class="row text-center">
+            <div class="col">% de Nubes</div>
+            <div class="col">Humedad</div>
+            <div class="col">Temperatura</div>
+            <div class="col">Minima</div>
+            <div class="col">Maxima</div>
+            <div class="col">Estado</div>
+    
+        </div>
+        <div class="row text-center">
+            <div class="col" id="2NubeHoy">Dia</div>
+            <div class="col" id="2HumeHoy">Humedad</div>
+            <div class="col" id="2TempHoy">Temperatura</div>
+            <div class="col" id="2MinHoy">Min</div>
+            <div class="col" id="2MaxHoy">Max</div>
+            <div class="col" id="2EstHoy">Estado</div>
+        </div>
+        <div class="row text-center">
+            <div class="col" id="2Nube0">Dia</div>
+            <div class="col" id="2Hume0">Humedad</div>
+            <div class="col" id="2Temp0">Temperatura</div>
+            <div class="col" id="2Min0">Min</div>
+            <div class="col" id="2Max0">Max</div>
+            <div class="col" id="2Est0">Estado</div>
+        </div>
+        <div class="row text-center">
+            <div class="col" id="2Nube1">Dia</div>
+            <div class="col" id="2Hume1">Humedad</div>
+            <div class="col" id="2Temp1">Temperatura</div>
+            <div class="col" id="2Min1">Min</div>
+            <div class="col" id="2Max1">Max</div>
+            <div class="col" id="2Est1">Estado</div>
+        </div>
+        <div class="row text-center">
+            <div class="col" id="2Nube2">Dia</div>
+            <div class="col" id="2Hume2">Humedad</div>
+            <div class="col" id="2Temp2">Temperatura</div>
+            <div class="col" id="2Min2">Min</div>
+            <div class="col" id="2Max2">Max</div>
+            <div class="col" id="2Est2">Estado</div>
+        </div>
+        <div class="row text-center">
+            <div class="col" id="2Nube3">Dia</div>
+            <div class="col" id="2Hume3">Humedad</div>
+            <div class="col" id="2Temp3">Temperatura</div>
+            <div class="col" id="2Min3">Min</div>
+            <div class="col" id="2Max3">Max</div>
+            <div class="col" id="2Est3">Estado</div>
+        </div>
+    </div>
+
+    
+    <br>
+    <br>
+    <h1 class="text-center"> TU CIUDAD:</h1>
+    <br>
+    <h2 id="ciudadMia" class="text-center"></h1>
+    <h3 id="tiempo" class="text-center"></h1>
+    <br>
+    <div class="fondo">
+        <div class="row text-center">
+            <div class="col">% de Nubes</div>
+            <div class="col">Humedad</div>
+            <div class="col">Temperatura</div>
+    
+            <div class="col">Minima</div>
+            <div class="col">Maxima</div>
+            <div class="col">Estado</div>
+    
+        </div>
+        <div class="row text-center">
+            <div class="col" id="NubeHoy">Dia</div>
+            <div class="col" id="HumeHoy">Humedad</div>
+            <div class="col" id="TempHoy">Temperatura</div>
+            <div class="col" id="MinHoy">Min</div>
+            <div class="col" id="MaxHoy">Max</div>
+            <div class="col" id="EstHoy">Estado</div>
+        </div>
+        <div class="row text-center">
+            <div class="col" id="Nube0">Dia</div>
+            <div class="col" id="Hume0">Humedad</div>
+            <div class="col" id="Temp0">Temperatura</div>
+            <div class="col" id="Min0">Min</div>
+            <div class="col" id="Max0">Max</div>
+            <div class="col" id="Est0">Estado</div>
+        </div>
+        <div class="row text-center">
+            <div class="col" id="Nube1">Dia</div>
+            <div class="col" id="Hume1">Humedad</div>
+            <div class="col" id="Temp1">Temperatura</div>
+            <div class="col" id="Min1">Min</div>
+            <div class="col" id="Max1">Max</div>
+            <div class="col" id="Est1">Estado</div>
+        </div>
+        <div class="row text-center">
+            <div class="col" id="Nube2">Dia</div>
+            <div class="col" id="Hume2">Humedad</div>
+            <div class="col" id="Temp2">Temperatura</div>
+            <div class="col" id="Min2">Min</div>
+            <div class="col" id="Max2">Max</div>
+            <div class="col" id="Est2">Estado</div>
+        </div>
+        <div class="row text-center">
+            <div class="col" id="Nube3">Dia</div>
+            <div class="col" id="Hume3">Humedad</div>
+            <div class="col" id="Temp3">Temperatura</div>
+            <div class="col" id="Min3">Min</div>
+            <div class="col" id="Max3">Max</div>
+            <div class="col" id="Est3">Estado</div>
+        </div>
+    </div>
+    
+
+    
+
 
     <script src="weather.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 
 </html>
